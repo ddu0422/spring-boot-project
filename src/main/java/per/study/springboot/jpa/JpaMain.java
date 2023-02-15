@@ -35,12 +35,14 @@ public class JpaMain {
 
     private static void logic(EntityManager em) {
         String id = "id1";
-        JpaMember member = new JpaMember();
 
+        // 객체를 생성한 상태 (비영속)
+        JpaMember member = new JpaMember();
         member.setId(id);
         member.setUsername("두호");
         member.setAge(29);
 
+        // 객체를 저장한 상태 (영속)
         // 엔티티 저장시 엔티티 매니저의 persist() 메서드에 저장할 엔티티를 넘겨줌.
         em.persist(member);
         // 엔티티의 값만 변경하면 UPDATE SQL을 생성해서 데이터베이스에 값을 변경함.
@@ -57,6 +59,10 @@ public class JpaMain {
         List<JpaMember> members = em.createQuery("select m from JpaMember m", JpaMember.class).getResultList();
         System.out.println("members.size = " + members.size());
 
+        // 회원 엔티티를 영속성 컨텍스느에서 분리, 준영속 상태
+        // em.detach(member);
+
+        // 객체를 삭제한 상태 (삭제)
         // 삭제
         // 엔티티를 삭제하려면 엔티티 매니저의 remove() 메서드에 삭제하려는 엔티티를 넘겨줌.
         em.remove(member);
