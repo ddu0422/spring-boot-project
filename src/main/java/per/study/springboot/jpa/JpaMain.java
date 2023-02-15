@@ -7,6 +7,15 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import per.study.springboot.jpa.entity.JpaMember;
 
+/**
+ * 영속성 컨텍스트가 엔티티를 관리할 때 장점
+ * 1. 1차 캐시
+ * 2. 동일성 보장
+ * 3. 트랜잭션을 지원하는 쓰기 지연
+ * 4. 변경 감지
+ * 5. 지연 로딩
+ */
+
 public class JpaMain {
     public static void main(String[] args) {
         // persistence.xml 설정 정보를 읽어서 JPA를 동작시키기 위한 기반 객체를 만들고 JPA 구현체에 따라서 커넥션 풀 생성
