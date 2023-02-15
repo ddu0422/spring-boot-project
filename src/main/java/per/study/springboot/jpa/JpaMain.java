@@ -21,6 +21,25 @@ import per.study.springboot.jpa.entity.JpaMember;
  * 5. 지연 로딩
  */
 
+/**
+ * ### 플러시 ###
+ * 영속성 컨텍스트의 변경 내용을 데이터베이스에 동기화
+ *
+ * 1. em.flush() 호출
+ *    - 테스트 or 다른 프레임워크와 JPA를 함께 사용할 때는 제외하고 거의 사용하지 않음.
+ * 2. 트랜잭션 커밋 시 플러시 자동 호출
+ *    - 트랜잭션을 커밋하기 전에 플러시를 호출해서 영속성 컨텍스트의 변경 내용을 데이터베이스에 반영
+ * 3. JPQL 쿼리 실행 시 플러시가 자동 호출
+ *    - JPQL이나 Criteria같은 객체지향 쿼리를 호출할 때도 플러시가 실행
+ *    - JPQL은 SQL로 변환되어 데이터베이스에서 엔티티를 조회
+ *
+ * ### 플러시 모드 옵션 ###
+ * 1. FlushModeType.AUTO
+ *    - 커밋이나 쿼리를 실행할 때 플러시 (기본값) <-- 대부분 그대로 사용
+ * 2. FlushModeType.COMMIT
+ *    - 커밋할 때만 플러시
+ */
+
 public class JpaMain {
     public static void main(String[] args) {
         // persistence.xml 설정 정보를 읽어서 JPA를 동작시키기 위한 기반 객체를 만들고 JPA 구현체에 따라서 커넥션 풀 생성
