@@ -1,11 +1,11 @@
-package per.study.springboot.jpa;
+package per.study.jpa;
 
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
-import per.study.springboot.jpa.entity.JpaMember;
+import per.study.jpa.entity.Member;
 
 /**
  * ### 영속성 컨텍스트가 엔티티를 관리할 때 장점 ###
@@ -72,7 +72,7 @@ public class JpaMain {
         String id = "id1";
 
         // 객체를 생성한 상태 (비영속)
-        JpaMember member = new JpaMember();
+        Member member = new Member();
         member.setId(id);
         member.setUsername("두호");
         member.setAge(29);
@@ -87,13 +87,13 @@ public class JpaMain {
         // 1차 캐시에서 조회
         // 단건 조회
         // find 메서드는 조회활 엔티티 타입과 @Id로 데이터베이스 테이블의 기본 키와 매핑한 식별자 값으로 엔티티 하나를 조회하는 단순한 조회 메서드
-        JpaMember findMember = em.find(JpaMember.class, id);
+        Member findMember = em.find(Member.class, id);
         System.out.println("findMember = " + findMember.getUsername() + ", age = " + findMember.getAge());
 
         // 목록 조회
         // JPQL: 검색을 할 때도 테이블이 아닌 엔티티 객체를 대상으로 검색해야함.
         // SQL: 데이터베이스 테이블을 대상으로 쿼리함.
-        List<JpaMember> members = em.createQuery("select m from JpaMember m", JpaMember.class).getResultList();
+        List<Member> members = em.createQuery("select m from Member m", Member.class).getResultList();
         System.out.println("members.size = " + members.size());
 
         // 회원 엔티티를 영속성 컨텍스느에서 분리, 준영속 상태

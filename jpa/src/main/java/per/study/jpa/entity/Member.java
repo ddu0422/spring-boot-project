@@ -1,4 +1,4 @@
-package per.study.springboot.jpa.entity;
+package per.study.jpa.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,7 +7,7 @@ import javax.persistence.Table;
 
 @Entity // 이 클래스를 테이블과 매핑한다고 JPA에게 알려줌
 @Table(name = "JPA_MEMBER") // 엔티티 클래스에 매핑할 테이블 정보를 알려줌, 생략하면 엔티티 이름을 테이블 이름으로 매핑
-public class JpaMember {
+public class Member {
 
     @Id // 테이블의 기본 키에 매핑 (식별자 필드)
     @Column(name = "ID")
