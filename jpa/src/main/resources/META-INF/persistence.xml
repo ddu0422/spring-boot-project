@@ -4,10 +4,11 @@
         <class>per.study.jpa.entity.Member</class>
         <properties>
             <!-- 필수 -->
-            <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
-            <property name="javax.persistence.jdbc.user" value="sa"/>
-            <property name="javax.persistence.jdbc.password" value=""/>
-            <property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:userdb"/>
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="javax.persistence.jdbc.user" value="root"/>
+            <property name="javax.persistence.jdbc.password" value="password"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/test"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/>
 
             <!-- 옵션 -->
             <property name="hibernate.hbm2ddl.auto" value="create"/>

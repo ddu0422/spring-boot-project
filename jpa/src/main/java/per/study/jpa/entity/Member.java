@@ -2,6 +2,8 @@ package per.study.jpa.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -10,8 +12,9 @@ import javax.persistence.Table;
 public class Member {
 
     @Id // 테이블의 기본 키에 매핑 (식별자 필드)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
-    private String id;
+    private Long id;
 
     @Column(name = "NAME") // name 속성을 사용해서 필드를 name 속성 값에 해당하는 컬럼에 매핑
     private String username;
@@ -19,11 +22,11 @@ public class Member {
     // 매핑 정보가 없는 필드 -> 매핑 어노테이션을 생략하면 필드명을 사용해서 컬럼명으로 매핑
     private Integer age;
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

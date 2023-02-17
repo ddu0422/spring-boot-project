@@ -10,14 +10,14 @@ import per.study.jpa.entity.Member;
 /**
  * ### 영속성 컨텍스트가 엔티티를 관리할 때 장점 ###
  * 1. 1차 캐시 (성능상 이점) => Application Level [REPEATABLE READ] 격리 수준 제공
- *    - 1차 캐시에 엔티티가 있는 경우 1차 캐시에서 데이터 반환
- *    - 1차 캐시에 엔티티가 없는 경우 DB 조회 후 1차 캐시 저장 후 데이터 반환
+ * - 1차 캐시에 엔티티가 있는 경우 1차 캐시에서 데이터 반환
+ * - 1차 캐시에 엔티티가 없는 경우 DB 조회 후 1차 캐시 저장 후 데이터 반환
  * 2. 동일성 보장
- *    - 동일한 인스턴스
+ * - 동일한 인스턴스
  * 3. 트랜잭션을 지원하는 쓰기 지연 (성능상 이점)
- *    - 모아둔 쿼리를 데이터베이스에 한번에 전달해서 성능 최적화
+ * - 모아둔 쿼리를 데이터베이스에 한번에 전달해서 성능 최적화
  * 4. 변경 감지
- *    - 스탭샷과 엔티티를 비교해서 변경된 엔티티를 찾은 후 수정 SQL을 쓰기 지연 SQL 저장소에 전달
+ * - 스탭샷과 엔티티를 비교해서 변경된 엔티티를 찾은 후 수정 SQL을 쓰기 지연 SQL 저장소에 전달
  * 5. 지연 로딩
  */
 
@@ -73,7 +73,7 @@ public class JpaMain {
 
         // 객체를 생성한 상태 (비영속)
         Member member = new Member();
-        member.setId(id);
+//        member.setId(id);
         member.setUsername("두호");
         member.setAge(29);
 
@@ -87,7 +87,7 @@ public class JpaMain {
         // 1차 캐시에서 조회
         // 단건 조회
         // find 메서드는 조회활 엔티티 타입과 @Id로 데이터베이스 테이블의 기본 키와 매핑한 식별자 값으로 엔티티 하나를 조회하는 단순한 조회 메서드
-        Member findMember = em.find(Member.class, id);
+        Member findMember = em.find(Member.class, 1L);
         System.out.println("findMember = " + findMember.getUsername() + ", age = " + findMember.getAge());
 
         // 목록 조회
