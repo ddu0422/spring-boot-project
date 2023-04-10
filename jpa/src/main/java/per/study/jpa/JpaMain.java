@@ -9,6 +9,7 @@ import javax.persistence.Persistence;
 import per.study.jpa.entity.Board;
 import per.study.jpa.entity.Member;
 import per.study.jpa.entity.MemberId;
+import per.study.jpa.entity.Post;
 
 /**
  * ### 영속성 컨텍스트가 엔티티를 관리할 때 장점 ###
@@ -87,6 +88,10 @@ public class JpaMain {
         Board board = new Board();
         em.persist(board);
         System.out.println("board.id = " + board.getId());
+
+        Post post = new Post();
+        em.persist(post);
+        System.out.println("post.id = " + post.getId());
 
         // 1차 캐시에 저장
         // 객체를 저장한 상태 (영속)
