@@ -5,6 +5,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+
+import per.study.jpa.entity.Board;
 import per.study.jpa.entity.Member;
 import per.study.jpa.entity.MemberId;
 
@@ -81,6 +83,10 @@ public class JpaMain {
         MemberId memberId = new MemberId();
         em.persist(memberId);
         System.out.println("memberId = " + memberId.getId());
+
+        Board board = new Board();
+        em.persist(board);
+        System.out.println("board.id = " + board.getId());
 
         // 1차 캐시에 저장
         // 객체를 저장한 상태 (영속)

@@ -3,6 +3,7 @@
     <persistence-unit name="jpabook">
         <class>per.study.jpa.entity.Member</class>
         <class>per.study.jpa.entity.MemberId</class>
+        <class>per.study.jpa.entity.Board</class>
         <properties>
             <!-- 필수 -->
             <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
