@@ -1,9 +1,9 @@
-package per.study.springboot.sample.usecase;
+package per.study.springdatajpa.usecase;
 
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
-import per.study.springboot.sample.domain.User;
-import per.study.springboot.sample.repository.UserRepository;
+import per.study.springdatajpa.entity.User;
+import per.study.springdatajpa.repository.UserRepository;
 
 @Service
 public class SearchUser {
@@ -16,7 +16,7 @@ public class SearchUser {
 
     public void execute() {
         for (User user: userRepository.findAll(makeSpecification())) {
-            System.out.println(user.getUsername());
+            System.out.println(user.getName());
         }
     }
 
