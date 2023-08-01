@@ -55,8 +55,10 @@ public class Member {
     @Lob
     private String description;
 
-    @ManyToOne
-    @JoinColumn(name = "TEAM_ID")
+    @ManyToOne // 다대일 관계라는 매핑 정보
+    @JoinColumn(name = "TEAM_ID") // 외래 키를 매핑할 때 사용 (생략 가능)
+                                  // referencedColumnName: 외래 키가 참조하는 대상 테이블의 컬럼명
+                                  // foreignKey(DDL):      외래 키 제약 조건
     private Team team;
 
     // 엔티티 객체를 생성할 때 기본 생성자를 사용하므로 필수 (public / protected)
