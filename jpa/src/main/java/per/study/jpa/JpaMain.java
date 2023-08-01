@@ -63,6 +63,8 @@ public class JpaMain {
             tx.begin();
             logic(em);
             testSave(em);
+            queryLogicJoin(em);
+            updateRelation(em);
             // 커밋하는 순간 데이터베이스에 SQL을 보냄
             tx.commit();
         } catch (Exception e) {
@@ -143,11 +145,11 @@ public class JpaMain {
         Member member = em.find(Member.class, "member1");
         Team team = member.getTeam();
         System.out.println("팀 이름 = " + team.getName());
-
-        queryLogicJoin(em);
     }
 
     private static void queryLogicJoin(EntityManager em) {
+        System.out.println("========== query logic join =========");
+
         String jpql = "select m from Member m join m.team t where t.name=:teamName";
 
         List<Member> resultList = em.createQuery(jpql, Member.class)
@@ -157,5 +159,17 @@ public class JpaMain {
         for (Member member : resultList) {
             System.out.println("[query] member.username = " + member.getUsername());
         }
+    }
+
+    private static void updateRelation(EntityManager em) {
+        System.out.println("========== update relation =========");
+
+        // 새로운 팀2
+        Team team2 = new Team("team2", "팀2");
+        em.persist(team2);
+
+        // 회원1에 새로운 팀2 설정
+        Member member = em.find(Member.class, "member1");
+        member.setTeam(team2);
     }
 }
