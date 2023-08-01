@@ -10,8 +10,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
-import java.time.ZonedDateTime;
-import java.util.Calendar;
 import java.util.Date;
 
 /**

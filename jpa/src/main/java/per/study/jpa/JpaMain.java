@@ -1,15 +1,15 @@
 package per.study.jpa;
 
-import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
-
 import per.study.jpa.entity.Board;
 import per.study.jpa.entity.Member;
 import per.study.jpa.entity.MemberId;
 import per.study.jpa.entity.Post;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
+import java.util.List;
 
 /**
  * ### 영속성 컨텍스트가 엔티티를 관리할 때 장점 ###
