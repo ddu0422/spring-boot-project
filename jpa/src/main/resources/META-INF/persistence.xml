@@ -5,6 +5,7 @@
         <class>per.study.jpa.entity.MemberId</class>
         <class>per.study.jpa.entity.Board</class>
         <class>per.study.jpa.entity.Post</class>
+        <class>per.study.jpa.entity.Team</class>
         <properties>
             <!-- 필수 -->
             <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
