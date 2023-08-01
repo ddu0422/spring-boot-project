@@ -65,6 +65,7 @@ public class JpaMain {
             testSave(em);
             queryLogicJoin(em);
             updateRelation(em);
+            deleteRelation(em);
             // 커밋하는 순간 데이터베이스에 SQL을 보냄
             tx.commit();
         } catch (Exception e) {
@@ -171,5 +172,12 @@ public class JpaMain {
         // 회원1에 새로운 팀2 설정
         Member member = em.find(Member.class, "member1");
         member.setTeam(team2);
+    }
+
+    private static void deleteRelation(EntityManager em) {
+        System.out.println("========== delete relation =========");
+
+        Member member = em.find(Member.class, "member1");
+        member.setTeam(null);
     }
 }
