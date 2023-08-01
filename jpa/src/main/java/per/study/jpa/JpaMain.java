@@ -139,5 +139,23 @@ public class JpaMain {
         Member member2 = new Member("member2", "회원2");
         member2.setTeam(team1);
         em.persist(member2);
+
+        Member member = em.find(Member.class, "member1");
+        Team team = member.getTeam();
+        System.out.println("팀 이름 = " + team.getName());
+
+        queryLogicJoin(em);
+    }
+
+    private static void queryLogicJoin(EntityManager em) {
+        String jpql = "select m from Member m join m.team t where t.name=:teamName";
+
+        List<Member> resultList = em.createQuery(jpql, Member.class)
+            .setParameter("teamName", "팀1")
+            .getResultList();
+
+        for (Member member : resultList) {
+            System.out.println("[query] member.username = " + member.getUsername());
+        }
     }
 }
