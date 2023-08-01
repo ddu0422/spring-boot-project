@@ -4,6 +4,7 @@ import per.study.jpa.entity.Board;
 import per.study.jpa.entity.Member;
 import per.study.jpa.entity.MemberId;
 import per.study.jpa.entity.Post;
+import per.study.jpa.entity.Team;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -61,6 +62,7 @@ public class JpaMain {
             // 엔티티 매니저는 데이터 변경 시 트랜잭션을 시작해야 함.
             tx.begin();
             logic(em);
+            testSave(em);
             // 커밋하는 순간 데이터베이스에 SQL을 보냄
             tx.commit();
         } catch (Exception e) {
@@ -119,5 +121,23 @@ public class JpaMain {
         // 삭제
         // 엔티티를 삭제하려면 엔티티 매니저의 remove() 메서드에 삭제하려는 엔티티를 넘겨줌.
         em.remove(member);
+    }
+
+    public static void testSave(EntityManager em) {
+        System.out.println("========== test save =========");
+
+        // 팀1 저장
+        Team team1 = new Team("team1", "팀1");
+        em.persist(team1);
+
+        // 회원1 저장
+        Member member1 = new Member("member1", "회원1");
+        member1.setTeam(team1); // 회원 -> 팀 참조
+        em.persist(member1);    // 저장
+
+        // 회원2 저장
+        Member member2 = new Member("member2", "회원2");
+        member2.setTeam(team1);
+        em.persist(member2);
     }
 }
