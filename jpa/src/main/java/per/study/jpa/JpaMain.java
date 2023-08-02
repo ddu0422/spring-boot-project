@@ -61,13 +61,16 @@ public class JpaMain {
         try {
             // 엔티티 매니저는 데이터 변경 시 트랜잭션을 시작해야 함.
             tx.begin();
-            logic(em);
+//            logic(em);
             testSave(em);
-            queryLogicJoin(em);
-            updateRelation(em);
-            deleteRelation(em);
+//            queryLogicJoin(em);
+//            updateRelation(em);
+//            deleteRelation(em);
             // 커밋하는 순간 데이터베이스에 SQL을 보냄
             tx.commit();
+            // entity manager에는 team에 member 부분을 변경하지 않았기 때문에 DB에서 읽어서 쓰는 방식으로 예제를 해결함.
+            em.clear();
+            biDirection(em);
         } catch (Exception e) {
             tx.rollback();
         } finally {
@@ -179,5 +182,17 @@ public class JpaMain {
 
         Member member = em.find(Member.class, "member1");
         member.setTeam(null);
+    }
+
+    private static void biDirection(EntityManager em) {
+        System.out.println("========== biDirection =========");
+
+        Member member = em.find(Member.class, "member1");
+        List<Member> members = member.getTeam().getMembers();
+        System.out.println(members.size());
+
+        for (Member a : members) {
+            System.out.println("member.username = " + a.getUsername());
+        }
     }
 }
