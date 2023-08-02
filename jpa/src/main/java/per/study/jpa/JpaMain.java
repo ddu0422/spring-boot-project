@@ -1,5 +1,8 @@
 package per.study.jpa;
 
+import org.hibernate.engine.spi.EntityEntry;
+import org.hibernate.engine.spi.PersistenceContext;
+import org.hibernate.engine.spi.SessionImplementor;
 import per.study.jpa.entity.Board;
 import per.study.jpa.entity.Member;
 import per.study.jpa.entity.MemberId;
@@ -11,6 +14,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import java.util.List;
+import java.util.Map;
 
 /**
  * ### 영속성 컨텍스트가 엔티티를 관리할 때 장점 ###
@@ -68,6 +72,14 @@ public class JpaMain {
 //            deleteRelation(em);
             // 커밋하는 순간 데이터베이스에 SQL을 보냄
             tx.commit();
+
+            SessionImplementor session = em.unwrap(SessionImplementor.class);
+            PersistenceContext pc = session.getPersistenceContext();
+            Map.Entry<Object, EntityEntry>[] entityEntries = pc.reentrantSafeEntityEntries();
+
+            for (Map.Entry<Object, EntityEntry> entityEntry : entityEntries) {
+                System.out.println("entry: " + entityEntry.getKey() + " : " + entityEntry.getValue());
+            }
             // entity manager에는 team에 member 부분을 변경하지 않았기 때문에 DB에서 읽어서 쓰는 방식으로 예제를 해결함.
             em.clear();
             biDirection(em);
